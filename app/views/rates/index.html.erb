@@ -1,0 +1,13 @@
+<table>
+  <% @rates.each do |rate| %>
+    <tr>
+      <td>
+         <% rate.banks.each do |bank| %>
+           <%= bank.name %>
+         <% end %>
+      </td>
+      <td><%= rate.buy %></td>
+      <td><%= rate.sale %></td>
+    </tr>
+  <% end %>
+</table>

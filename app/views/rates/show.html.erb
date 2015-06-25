@@ -1,0 +1,9 @@
+<h1><%= @rate.currency %></h1>
+<% @rate.banks.each do |bank| %>
+    <%= bank.name %>
+  <% bank.rates.each do |rate| %>
+    <%= rate.currency %>
+    <%= rate.buy %>
+    <%= rate.sale %>
+  <% end %>
+<% end %>

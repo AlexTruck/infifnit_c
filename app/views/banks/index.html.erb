@@ -1,0 +1,7 @@
+<% @banks.each do |bank| %>
+  <table>
+     <tr>
+       <td><%= link_to bank.name, bank_path(bank) %></td>
+     </tr>
+  </table>
+<% end %>

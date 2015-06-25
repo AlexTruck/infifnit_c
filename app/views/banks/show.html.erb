@@ -1,0 +1,43 @@
+<h1><%= @bank.name %></h1>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "curr_chart"
+      },
+      title: {
+        text: "По банкам Украины"
+      },
+      xAxis: {
+        categories: <%= dates_range.to_json.html_safe %>
+      },
+      yAxis: {
+        title: {
+          text: "Rates"
+        }
+      },
+      series: <%= @bank.rates.weekly.dollar.map {|r| { name: r.currency, data: r.buy } }.to_json.html_safe %>
+    });
+  });
+</script>
+<div id="curr_chart"></div>
+
+<table>
+  <thead>
+    <tr>
+      <td>Валюта</td>
+      <td>Покупка</td>
+      <td>Продажа</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @bank.rates.each do |rate| %>
+    <tr>
+      <td><%= rate.currency %></td>
+      <td><%= rate.buy %></td>
+      <td><%= rate.sale %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
