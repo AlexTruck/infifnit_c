@@ -24,6 +24,7 @@ gem 'jbuilder'
 gem 'sdoc', group: :doc
 
 gem 'nokogiri'
+gem 'whenever', :require => false
 gem 'highcharts-rails'
 
 # Use ActiveModel has_secure_password

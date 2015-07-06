@@ -1,7 +1,7 @@
 class BanksController < ApplicationController
 
   def index
-    @banks = Bank.where("created_at >= ?", Time.now.beginning_of_day)
+    @banks = Bank.all
   end
 
   def show

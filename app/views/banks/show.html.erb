@@ -2,22 +2,29 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    new Highcharts.Chart({
+    $('#curr_chart').highcharts({
       chart: {
-        renderTo: "curr_chart"
+        type: 'line'
       },
       title: {
         text: "По банкам Украины"
       },
       xAxis: {
-        categories: <%= dates_range.to_json.html_safe %>
+        categories: <%= @bank.rates.weekly.dollar.map {|r| r.created_at.strftime('%d.%m.%Y') }.to_json.html_safe %>
       },
       yAxis: {
         title: {
           text: "Rates"
         }
       },
-      series: <%= @bank.rates.weekly.dollar.map {|r| { name: r.currency, data: r.buy } }.to_json.html_safe %>
+      series: [{
+        name: 'buy',
+        data: <%= @bank.rates.weekly.dollar.map {|r| r.buy.to_f }.to_json.html_safe %>
+      }, 
+      {
+        name: 'sale',
+        data: <%= @bank.rates.weekly.dollar.map {|r| r.sale.to_f }.to_json.html_safe %>
+      }]
     });
   });
 </script>
