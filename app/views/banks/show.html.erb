@@ -39,7 +39,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @bank.rates.each do |rate| %>
+  <% @bank.rates.recent_rates.each do |rate| %>
     <tr>
       <td><%= rate.currency %></td>
       <td><%= rate.buy %></td>
